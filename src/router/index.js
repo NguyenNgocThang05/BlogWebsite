@@ -9,37 +9,37 @@ const routes = [
     path: '/',
     name: 'Dashboard',
     component: DashboardPage,
-    meta: { requiresAuth: true }  // ✅ Fixed: requiresAuth (with 's')
+    meta: { requiresAuth: true }
   },
   {
     path: '/login',
     name: 'Login',
     component: LoginPage,
-    meta: { requiresAuth: false }  // ✅ Fixed: requiresAuth (with 's')
+    meta: { requiresAuth: false }
   },
   {
     path: '/register',
     name: 'Register',
     component: RegisterPage,
-    meta: { requiresAuth: false }  // ✅ Fixed: requiresAuth (with 's')
+    meta: { requiresAuth: false }
   },
   {
     path: '/create',
     name: 'CreatePost',
     component: () => import('../views/CreatePost.vue'),
-    meta: { requiresAuth: true }  // ✅ Fixed: requiresAuth (with 's')
+    meta: { requiresAuth: true }
   },
   {
     path: '/post/:id',
     name: 'PostDetail',
     component: () => import('../views/PostDetail.vue'),
-    meta: { requiresAuth: true }  // ✅ Fixed: requiresAuth (with 's')
+    meta: { requiresAuth: true }
   },
   {
     path: '/edit/:id',
     name: 'EditPost',
     component: () => import('../views/EditPost.vue'),
-    meta: { requiresAuth: true }  // ✅ Fixed: requiresAuth (with 's')
+    meta: { requiresAuth: true }
   }
 ];
 
