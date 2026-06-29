@@ -57,7 +57,6 @@ router.beforeEach((to, from, next) => {
     authStore.loadFromStorage();
   }
   
-  // ✅ Fixed: Use authStore.isLoggedIn instead of localStorage
   const isLoggedIn = authStore.isLoggedIn;
   
   // If route requires auth and user is not logged in

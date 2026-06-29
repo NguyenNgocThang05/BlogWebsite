@@ -1,3 +1,4 @@
+/* ===== EXISTING POSTS.CSS STYLES ===== */
 /* Home Page */
 .home {
   padding: 20px 0;
@@ -53,7 +54,7 @@
   margin-bottom: 30px;
 }
 
-/* Create/Edit Post Pages */
+/* ===== CREATE/EDIT POST STYLES ===== */
 .create-post,
 .edit-post {
   padding: 20px 0;
@@ -70,66 +71,114 @@
   margin-bottom: 20px;
 }
 
-/* Responsive Design */
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.3s;
+  background: white;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #42b883;
+  box-shadow: 0 0 0 3px rgba(66, 184, 131, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+select {
+  cursor: pointer;
+  appearance: auto;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Not Found Page */
+.not-found {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.not-found h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.not-found p {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .posts-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .post-item {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .post-actions {
-    margin-left: 0;
-    margin-top: 15px;
-    justify-content: flex-end;
-  }
-  
-  .welcome {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-  
-  .navbar .container,
-  .auth-header .container {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .nav-links a {
-    margin: 0 10px;
   }
   
   .post-detail .post {
     padding: 20px;
   }
   
+  .post-detail .post .meta {
+    gap: 10px;
+  }
+  
   .form-actions {
     flex-direction: column;
   }
   
-  .auth-container {
-    margin: 20px;
-    padding: 20px;
+  .form-actions button,
+  .form-actions a {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .create-post h1,
+  .edit-post h1 {
+    font-size: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .post-detail .post h1 {
+    font-size: 22px;
   }
   
-  .nav-links a {
-    margin: 5px;
-    font-size: 14px;
+  .post-detail .post .content {
+    font-size: 1rem;
   }
   
-  .post-card h2 {
-    font-size: 1.1rem;
+  .not-found h2 {
+    font-size: 22px;
   }
 }
