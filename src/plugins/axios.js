@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuthStore } from '@/stores/auth';
 
 const apiClient = axios.create({
   baseURL: process.env.VUE_APP_API_URL || 'http://localhost:5000/api',
@@ -10,9 +11,9 @@ const apiClient = axios.create({
 // Add token to every request
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const authStore = useAuthStore();
+    if (authStore.token) {
+      config.headers.Authorization = `Bearer ${authStore.token}`;
     }
     return config;
   },
@@ -27,12 +28,9 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    // If unauthorized (token expired or invalid)
     if (error.response && error.response.status === 401) {
-      // Clear local storage
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      // Redirect to login
+      const authStore = useAuthStore();
+      authStore.logout();
       window.location.href = '/login';
     }
     return Promise.reject(error);

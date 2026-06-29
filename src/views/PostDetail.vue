@@ -66,7 +66,7 @@ export default {
       if (confirm('Are you sure you want to delete this post?')) {
         try {
           await apiClient.delete(`/posts/${this.post._id}`);
-          this.$router.push('/dashboard');
+          this.$router.push('/');
         } catch (error) {
           console.error('Error deleting post:', error);
           alert('Failed to delete post');

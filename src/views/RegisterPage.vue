@@ -14,7 +14,7 @@
         <label>Password</label>
         <input v-model="user.password" type="password" required minlength="6" />
       </div>
-      <button type="submit" :disabled="loading">
+      <button type="submit" :disabled="loading" class="btn-primary">
         {{ loading ? 'Registering...' : 'Register' }}
       </button>
       <div v-if="message" :class="['message', error ? 'error' : 'success']">
@@ -27,6 +27,7 @@
 
 <script>
 import apiClient from '@/plugins/axios';
+import { useAuthStore } from '@/stores/auth';
 
 export default {
   data() {
@@ -39,24 +40,35 @@ export default {
   },
   methods: {
     async register() {
-  this.loading = true;
-  this.message = '';
-  try {
-    const response = await apiClient.post('/auth/register', this.user);
-    localStorage.setItem('token', response.data.token);
-    localStorage.setItem('user', JSON.stringify(response.data.user));
-    this.message = 'Registration successful!';
-    this.error = false;
-    setTimeout(() => this.$router.push('/dashboard'), 1000);
-  } catch (err) {
-    this.message = err.response?.data?.message || 'Registration failed';
-    this.error = true;
-  } finally {
-    this.loading = false;
-  }
-}
+      this.loading = true;
+      this.message = '';
+      this.error = false;
+      
+      try {
+        const response = await apiClient.post('/auth/register', this.user);
+        
+        // Use the store - it handles localStorage automatically
+        const authStore = useAuthStore();
+        authStore.setAuth(response.data.token, response.data.user);
+        
+        this.message = 'Registration successful!';
+        this.error = false;
+        
+        setTimeout(() => {
+          this.$router.push('/');
+        }, 1000);
+        
+      } catch (err) {
+        this.message = err.response?.data?.message || 'Registration failed';
+        this.error = true;
+      } finally {
+        this.loading = false;
+      }
+    }
   }
 };
 </script>
 
-<style scoped>@import '../assets/css/auth.css';</style>
+<style scoped>
+@import '../assets/css/auth.css';
+</style>
