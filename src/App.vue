@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar">
       <div class="container">
-        <router-link to="/" class="logo">📝 My Blog</router-link>
+        <router-link to="/" class="logo">My Blog</router-link>
         <div class="nav-links">
           <router-link v-if="authStore.isLoggedIn" to="/">Dashboard</router-link>
           <router-link v-if="authStore.isLoggedIn" to="/create">New Post</router-link>
